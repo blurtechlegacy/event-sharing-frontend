@@ -8,8 +8,7 @@
     "start": "set NODE_ENV=development && webpack-dev-server --output-path=/build/ --watch",
     "build": "set NODE_ENV=production && webpack"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Blurred Technologies",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
