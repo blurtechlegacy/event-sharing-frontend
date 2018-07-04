@@ -43,20 +43,20 @@ class NavBar extends React.Component {
   render() {
     let button = null;
     let userName = null;
-    // if (this.props.isAuth) {
-    //   button = (
-    //     <Button color="inherit" onClick={this.handleLogoutClick.bind(this)}>
-    //       Log out
-    //     </Button>
-    //   );
-    //   userName = <Typography>Username: {this.props.username}</Typography>;
-    // } else {
-    //   button = (
-    //     <Button color="inherit" onClick={this.handleLoginClick.bind(this)}>
-    //       Log in
-    //     </Button>
-    //   );
-    // }
+    if (this.props.isAuth) {
+      button = (
+        <Button color="inherit" onClick={this.handleLogoutClick.bind(this)}>
+          Log out
+        </Button>
+      );
+      userName = <Typography>Username: {this.props.username}</Typography>;
+    } else {
+      button = (
+        <Button color="inherit" onClick={this.handleLoginClick.bind(this)}>
+          Log in
+        </Button>
+      );
+    }
 
     return (
       <AppBar>
@@ -73,11 +73,9 @@ class NavBar extends React.Component {
             </Button>
           </div>
           <div className={this.props.classes.flex}>
-            {/* {userName}
-            {button} */}
-            <Button color="inherit" onClick={this.handleLoginClick.bind(this)}>
-              Log in
-            </Button>
+            {userName}
+            {button}
+            
           </div>
         </Toolbar>
       </AppBar>
