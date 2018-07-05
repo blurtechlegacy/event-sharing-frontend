@@ -1,17 +1,23 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import EventsContainer from "./EventsContainer";
 import AuthContainer from "./AuthContainer";
 import AddEventContainer from "./AddEventContainer";
 import NavBar from "../components/NavBar";
+import { connect } from "react-redux";
+import * as actions from "../ducks/auth-duck/Actions"; 
+import * as selectors from "../ducks/auth-duck/Selectors"
 
-import { withRouter } from "react-router-dom";
 
 class AppContainer extends React.Component {
   render() {
     return (
       <div>
-        <NavBar/>
+        <NavBar
+          username={this.props.username}
+          isAuth={this.props.isAuth}
+          logOut={this.props.logOut}
+        />
         <Route exact path="/" component={EventsContainer} />
         <Route path="/login" component={AuthContainer} />
         <Route path="/addevent" component={AddEventContainer} />
@@ -20,6 +26,16 @@ class AppContainer extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  username: selectors.selectUsername(state),
+  isAuth: selectors.selectAuthStatus(state)
+});
+
+const mapDispatchToProps = {
+  logOut: actions.logOut
+};
 
 
-export default withRouter(AppContainer);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(AppContainer)
+);

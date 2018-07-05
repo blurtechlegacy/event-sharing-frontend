@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actions from "../ducks/events-duck/Actions"; 
-import * as selectors from "../ducks/events-duck/Selectors"
+import * as actions from "../ducks/auth-duck/Actions"; 
+import * as selectors from "../ducks/auth-duck/Selectors"
 import Login from "../components/Login";
 class AuthContainer extends React.Component {
   constructor(props) {
@@ -12,6 +12,9 @@ class AuthContainer extends React.Component {
       }
     }
   
+    login = () => {
+      this.props.loginSuccess(this.state.username);
+    }
     handleChangeName = event => {
       this.setState({username: event.target.value});
       console.log(this.state.username);
@@ -24,6 +27,9 @@ class AuthContainer extends React.Component {
     
     handleSubmit = event => {
       event.preventDefault();
+      console.log(this.state.username);
+      console.log(this.state.password);
+      this.login();
     }
   render() {
     return (
@@ -39,11 +45,11 @@ class AuthContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  eventsList: selectors.selectEventsList(state)
+
  });
  
  const mapDispatchToProps = {
-  
+    loginSuccess:actions.loginSuccess
   };
 
  export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer);
