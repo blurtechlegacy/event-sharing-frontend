@@ -7,11 +7,12 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "material-ui/TextField";
+import Button from "@material-ui/core/Button";
 import Tags from "./Tags";
 
 const styles = theme => ({
   container: {
-    marginTop: "20%",
+    marginTop: "5%",
     display: "flex",
     flexDirection: "column",
     width: "50%"
@@ -19,11 +20,14 @@ const styles = theme => ({
 });
 
 const Event = props => {
+  const inf = () => {
+    console.log("addEvent", props.visibleElements);
+  };
   const { classes } = props;
-  console.log(props.date);
 
   return (
     <div className={classes.container}>
+      {inf()}
       <TextField
         id="eventName"
         label="Name"
@@ -76,7 +80,15 @@ const Event = props => {
           step: 300 // 5 min
         }}
       />
-      <Tags tagsList={props.tags} handleChange={props.handleChange} />
+      <Tags
+        tagsList={props.tags}
+        handleChange={props.handleChange}
+        visibleElements={props.visibleElements}
+        changeVisible={props.changeVisible}
+      />
+      <Button variant="contained" color="primary">
+        Add event
+      </Button>
     </div>
   );
 };

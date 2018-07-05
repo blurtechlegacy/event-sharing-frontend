@@ -13,10 +13,16 @@ class AddEventContainer extends React.Component {
       eventPlace: "",
       eventDate: this.getDate(),
       eventSrartTime: "",
-      eventTags: []
+      eventTags: [],
+      visibleElements: [true, false, false, false]
     };
   }
-
+  visibleElementsArr = [true, false, false, false];
+  changeVisible = index => {
+    this.visibleElementsArr[index] = true;
+    this.setState({ visibleElements: this.visibleElementsArr });
+    console.log("вызвано");
+  };
   getDate = () => {
     let year = new Date().getUTCFullYear();
     let month =
@@ -33,9 +39,8 @@ class AddEventContainer extends React.Component {
   tagsArr = [];
   handleChange = (event, key = 0) => {
     if (event.target.name === "tag") {
-      console.log("tagKey", key);
       this.tagsArr[key] = event.target.value;
-      console.log(this.tagsArr);
+
       this.setState({ eventTags: this.tagsArr });
       return;
     }
@@ -48,6 +53,8 @@ class AddEventContainer extends React.Component {
         handleChange={this.handleChange}
         tags={this.props.tags}
         date={this.state.eventDate}
+        visibleElements={this.state.visibleElements}
+        changeVisible={this.changeVisible}
       />
     );
   }

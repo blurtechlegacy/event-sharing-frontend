@@ -8,7 +8,6 @@ const styles = theme => ({
   }
 });
 const Events = props => {
-  console.log(props.events);
   const eventsList = props.events.map(event => {
     return <EventPreview key={event.id} event={event} />;
   });

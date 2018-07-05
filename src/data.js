@@ -36,6 +36,26 @@ const data = {
       id: 2, // Primary key
       name: "movie", // tag name
       event_count: 12 // how many events used this tag. DEFAULT IS ZERO, FUCK!!!
+    },
+    {
+      id: 3, // Primary key
+      name: "music", // tag name
+      event_count: 12 // how many events used this tag. DEFAULT IS ZERO, FUCK!!!
+    },
+    {
+      id: 4, // Primary key
+      name: "music", // tag name
+      event_count: 12 // how many events used this tag. DEFAULT IS ZERO, FUCK!!!
+    },
+    {
+      id: 5, // Primary key
+      name: "music", // tag name
+      event_count: 12 // how many events used this tag. DEFAULT IS ZERO, FUCK!!!
+    },
+    {
+      id: 6, // Primary key
+      name: "music", // tag name
+      event_count: 12 // how many events used this tag. DEFAULT IS ZERO, FUCK!!!
     }
   ]
 };

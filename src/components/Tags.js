@@ -12,30 +12,23 @@ const styles = theme => ({
   container: {}
 });
 
-class Tags extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectTag: "",
-      tagsCount: 3
-    };
-  }
-  tagsList = this.props.tagsList.map((element, index) => {
-    console.log(element);
-    console.log(index);
+const Tags = props => {
+  const tags = props.tagsList.map((element, index) => {
+    console.log(index, props.visibleElements[index]);
     return (
       <Tag
         key={index}
         tagKey={index}
-        tagsList={this.props.tagsList}
-        handleChange={this.props.handleChange}
+        tagsList={props.tagsList}
+        handleChange={props.handleChange}
+        visibleOrHidden={props.visibleElements[index]}
+        visibleElements={props.visibleElements}
+        changeVisible={props.changeVisible}
       />
     );
   });
-  classes = this.props;
-  render() {
-    return this.tagsList;
-  }
-}
+
+  return tags;
+};
 
 export default withStyles(styles)(Tags);

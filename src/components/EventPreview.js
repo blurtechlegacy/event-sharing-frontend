@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const EventPreview = props => {
-  console.log("eventPreview", props.event);
   return (
     <div className="container">
       <h2>{props.event.name}</h2>
