@@ -11,30 +11,45 @@ class AddEventContainer extends React.Component {
       eventName: "",
       eventDescription: "",
       eventPlace: "",
+      eventDate: this.getDate(),
       eventSrartTime: "",
-      eventEndTime: "",
       eventTags: []
     };
   }
+
+  getDate = () => {
+    let year = new Date().getUTCFullYear();
+    let month =
+      new Date().getUTCMonth() + 1 < 10
+        ? `0${new Date().getUTCMonth() + 1}`
+        : new Date().getUTCMonth() + 1;
+    let day =
+      new Date().getUTCDay() + 1 < 10
+        ? `0${new Date().getUTCDay() + 1}`
+        : new Date().getUTCDay() + 1;
+    return `${year}-${month}-${day}`;
+  };
+
   tagsArr = [];
   handleChange = (event, key = 0) => {
-    this.setState({ [event.target.name]: event.target.value });
     if (event.target.name === "tag") {
       console.log("tagKey", key);
-      //console.log(event.target.name);
-      //this.state.eventTags.push(event.target.value);
       this.tagsArr[key] = event.target.value;
       console.log(this.tagsArr);
       this.setState({ eventTags: this.tagsArr });
-      //this.setState({eventTags[key]: event.target.value });
-      // this.setState({
-      //   [event.target.name]: this.state.tags.push(event.target.value)
-      // });
+      return;
     }
+    this.setState({ [event.target.name]: event.target.value });
   };
   render() {
     console.log(this.state);
-    return <AddEvent handleChange={this.handleChange} tags={this.props.tags} />;
+    return (
+      <AddEvent
+        handleChange={this.handleChange}
+        tags={this.props.tags}
+        date={this.state.eventDate}
+      />
+    );
   }
 }
 

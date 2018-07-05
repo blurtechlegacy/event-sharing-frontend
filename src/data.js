@@ -3,7 +3,7 @@ const data = {
     {
       id: 1, // Primary key
       host: 1, // id from table `users`
-      name: "Party in the forest", // Event name
+      name: "Party", // Event name
       description:
         "Party in the forest with guitar music 🎸, campfire 🔥. We might be spending the night",
       place: "54.8437876,83.0718511", // Geo coordinates
