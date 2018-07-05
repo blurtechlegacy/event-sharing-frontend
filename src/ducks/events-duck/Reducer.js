@@ -1,7 +1,8 @@
 import * as types from "./ActionTypes";
 import data from "../../data";
 const initialState = {
-  eventsList: data,
+  eventsList: data.events,
+  tags:data.tags
 };
 export const events = (state = initialState, action) => {
   switch (action.type) {

@@ -62,14 +62,11 @@ class NavBar extends React.Component {
       <AppBar>
         <Toolbar className={this.props.classes.root}>
           <div className={this.props.classes.flex}>
-            <Typography variant="title" color="inherit">
-              My App
-            </Typography>
             <Button color="inherit" onClick={this.toHomepage.bind(this)}>
-              Home
+            EventsSharing
             </Button>
             <Button color="inherit" onClick={this.toAddEvent}>
-              Movies
+              Добавить событие
             </Button>
           </div>
           <div className={this.props.classes.flex}>
