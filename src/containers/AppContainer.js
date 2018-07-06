@@ -3,6 +3,7 @@ import { Route, withRouter } from "react-router-dom";
 import EventsContainer from "./EventsContainer";
 import AuthContainer from "./AuthContainer";
 import AddEventContainer from "./AddEventContainer";
+import EventContainer from "./EventContainer";
 import NavBar from "../components/NavBar";
 import { connect } from "react-redux";
 import * as actions from "../ducks/auth-duck/Actions";
@@ -28,6 +29,7 @@ class AppContainer extends React.Component {
         <Route exact path="/" component={EventsContainer} />
         <Route path="/login" component={AuthContainer} />
         <Route path="/addevent" component={AddEventContainer} />
+        <Route path="/event/:id" component={EventContainer} />
       </div>
     );
   }

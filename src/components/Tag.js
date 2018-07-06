@@ -24,7 +24,7 @@ class Tag extends React.Component {
     super(props);
     this.state = {
       selectTag: "",
-      hidden: true
+      isHidden: true
     };
   }
   disabled = false;
@@ -35,7 +35,7 @@ class Tag extends React.Component {
   };
 
   toggle = () => {
-    this.setState({ hidden: !this.state.hidden });
+    this.setState({ isHidden: !this.state.isHidden });
     let index = this.props.tagKey + 1;
     this.disabled = true;
   };
@@ -63,7 +63,7 @@ class Tag extends React.Component {
         ) : (
           ""
         )}
-        {!this.state.hidden ? (
+        {!this.state.isHidden ? (
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="tag">tag</InputLabel>
             <Select

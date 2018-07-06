@@ -8,10 +8,11 @@ const styles = theme => ({
   }
 });
 const Events = props => {
+  const { classes } = props;
   const eventsList = props.events.map(event => {
     return <EventPreview key={event.id} event={event} />;
   });
 
-  return <div className="container">{eventsList}</div>;
+  return <div className={classes.container}>{eventsList}</div>;
 };
 export default withStyles(styles)(Events);
