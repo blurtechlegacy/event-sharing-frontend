@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import Background from '../Assets/LogoHD.png';
+import Background from '../Assets/LogoWeb.png';
 
 
 const styles = theme => ({
     Logo: {
         background: `url(${Background})`,
-        width: '100px',
-        height: '398px',
+        width: '293px',
+        height: '58px',
         backgroundSize: 'cover',
         margin: '0 auto',
         marginTop: '20px'
@@ -62,7 +62,7 @@ const TextFieldMargins = props => {
     return (
         <div className={classes.container}>
            <div className={classes.Logo}>
-
+                
            </div>
             <TextField
                 label="Login"
