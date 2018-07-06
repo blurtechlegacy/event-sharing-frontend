@@ -3,15 +3,24 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
+import Background from '../Assets/LogoHD.png';
 
 
 const styles = theme => ({
+    Logo: {
+        background: `url(${Background})`,
+        width: '100px',
+        height: '398px',
+        backgroundSize: 'cover',
+        margin: '0 auto',
+        marginTop: '20px'
+    },
     container: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: "center",
         flexWrap: 'wrap',
-        marginTop: '50px'
+        marginTop: '60px'
     },
     textField: {
         marginLeft: theme.spacing.unit,
@@ -39,6 +48,10 @@ const styles = theme => ({
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         marginTop: '10px',
         marginLeft: '15px'
+    },
+    buttons:{
+        display:'flex',
+        flexDirection:'row'
     }
 });
 
@@ -48,6 +61,9 @@ const TextFieldMargins = props => {
 
     return (
         <div className={classes.container}>
+           <div className={classes.Logo}>
+
+           </div>
             <TextField
                 label="Login"
                 id="margin-login"
@@ -62,12 +78,15 @@ const TextFieldMargins = props => {
                 helperText="min.8 characters"
                 margin="dense"
             />
+             <div className={classes.buttons}>
             <Button className={classes.button0}>
                 {'sign in'}
             </Button>
             <Button className={classes.button1}>
                 {'sign up'}
             </Button>
+        </div>
+
 
 
         </div>
