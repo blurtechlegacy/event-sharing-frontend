@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../ducks/events-duck/Actions";
 import * as selectors from "../ducks/events-duck/Selectors";
 import AddEvent from "../components/AddEvent";
+import axios from "axios";
 
 class AddEventContainer extends React.Component {
   constructor(props) {
@@ -46,6 +47,19 @@ class AddEventContainer extends React.Component {
     }
     this.setState({ [event.target.name]: event.target.value });
   };
+  send = () => {
+    axios
+      .post("http://localhost:8080/products", {
+        name: this.state.eventName,
+        description: this.state.eventDescription,
+        manufacturer: this.state.eventPlace
+      })
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+  sendEvent = () => {
+    this.send();
+  };
   render() {
     console.log(this.state);
     return (
@@ -55,6 +69,7 @@ class AddEventContainer extends React.Component {
         date={this.state.eventDate}
         visibleElements={this.state.visibleElements}
         changeVisible={this.changeVisible}
+        sendEvent={this.sendEvent}
       />
     );
   }

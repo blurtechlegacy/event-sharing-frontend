@@ -27,7 +27,17 @@ class EventPreview extends React.Component {
     this.setState({ secretData: true });
     this.secretData = <p>{this.props.event.place}</p>;
   };
+  // tags = this.props.tags.filter((el, index) => {
+  //   return (el.id = this.props.event.tags[index]);
+  // });
+  // tag = this.props.event.tags.map(el => {
+  //   return el;
+  // });
+
   render() {
+    //console.log(this.props.event.tags);
+    //console.log(this.tags);
+    //console.log(this.tag);
     const { classes } = this.props;
     return (
       <div className={classes.container}>

@@ -17,3 +17,8 @@ export const fetchTagsSuccess = tags => ({
   type: types.FETCH_TAGS_SUCCESS,
   tags
 });
+
+export const addTagForFilter = tag => ({
+  type: types.ADD_TAG_FOR_FILTER,
+  tag
+});

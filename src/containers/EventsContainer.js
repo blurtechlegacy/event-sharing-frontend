@@ -8,8 +8,8 @@ import * as selectors from "../ducks/events-duck/Selectors";
 import axios from "axios";
 class EventsContainer extends React.Component {
   componentDidMount() {
-    this.props.fetchEvents();
-    this.props.fetchTags();
+    //!this.props.eventsList.length && this.props.fetchEvents();
+    //this.props.fetchTags();
     //   axios
     //     .get("http://104.41.217.114:1984/api/v001/events")
     //     .then(response => console.log(response.data));
@@ -18,9 +18,10 @@ class EventsContainer extends React.Component {
     this.props.history.push("/login");
   };
   render() {
+    console.log("filtred", this.props.selectFiltredEventsList);
     return (
       <div>
-        {/* <SortAndFilterContainer events={this.props.eventsList} /> */}
+        <SortAndFilterContainer events={this.props.eventsList} />
         <Events events={this.props.eventsList} />
       </div>
     );
@@ -28,7 +29,9 @@ class EventsContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  eventsList: selectors.selectEventsList(state)
+  // eventsList: selectors.selectEventsList(state),
+  // selectFiltredEventsList: selectors.selectFiltredEventsList(state)
+  eventsList: selectors.selectFiltredEventsList(state)
 });
 
 const mapDispatchToProps = {

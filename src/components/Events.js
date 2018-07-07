@@ -10,7 +10,7 @@ const styles = theme => ({
 const Events = props => {
   const { classes } = props;
   const eventsList = props.events.map(event => {
-    return <EventPreview key={event.id} event={event} />;
+    return <EventPreview key={event.id} event={event} tags={props.tags} />;
   });
 
   return <div className={classes.container}>{eventsList}</div>;
