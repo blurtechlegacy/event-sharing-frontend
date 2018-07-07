@@ -86,7 +86,7 @@ const Event = props => {
         visibleElements={props.visibleElements}
         changeVisible={props.changeVisible}
       />
-      <Button variant="contained" color="primary">
+      <Button onClick={props.sendEvent} variant="contained" color="primary">
         Add event
       </Button>
     </div>

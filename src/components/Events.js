@@ -24,12 +24,13 @@ const Events = props => {
             <EventPreview key={event.id} event={event}/>
         );
     });
+
     const {classes} = props;
     return (<div className={classes.parentEvent}> {eventsList}</div>
 
     )
 
 
-}
 
+}
 export default withStyles(styles)(Events);

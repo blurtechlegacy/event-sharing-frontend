@@ -49,9 +49,9 @@ const styles = theme => ({
         marginTop: '10px',
         marginLeft: '15px'
     },
-    buttons:{
-        display:'flex',
-        flexDirection:'row'
+    buttons: {
+        display: 'flex',
+        flexDirection: 'row'
     }
 });
 
@@ -61,14 +61,15 @@ const TextFieldMargins = props => {
 
     return (
         <div className={classes.container}>
-           <div className={classes.Logo}>
-                
-           </div>
+            <div className={classes.Logo}>
+
+            </div>
             <TextField
                 label="Login"
                 id="margin-login"
                 className={classes.textField}
                 helperText=""
+                onChange={props.handleChangeName}
             />
             <TextField
                 label="Password"
@@ -77,16 +78,14 @@ const TextFieldMargins = props => {
                 className={classes.textField}
                 helperText="min.8 characters"
                 margin="dense"
+                onChange={props.handleChangePassword}
             />
-             <div className={classes.buttons}>
-            <Button className={classes.button0}>
-                {'sign in'}
-            </Button>
-            <Button className={classes.button1}>
-                {'sign up'}
-            </Button>
-        </div>
+            <div className={classes.buttons}>
+                <Button className={classes.button0} onClick={props.handleSubmit}>
+                    {'sign in'}
 
+                </Button>
+            </div>
 
 
         </div>

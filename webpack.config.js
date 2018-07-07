@@ -8,7 +8,7 @@ const plugins =
     process.env.NODE_ENV === "production"
         ? [
             new webpack.optimize.UglifyJsPlugin({
-                compress: {warnings: false}
+                compress: { warnings: false }
             })
         ]
         : [];
@@ -31,7 +31,13 @@ module.exports = {
         strictExportPresence: true,
         rules: [
             {
-                oneOf: [
+                oneOf: [ {test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000'},
+                    {
+                        test: /\.(jpg|png|svg)$/,
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[hash].[ext]',
+                        },
                     {
                         test: /\.js$/,
                         exclude: /(node_modules)/,
@@ -45,14 +51,6 @@ module.exports = {
                         }
                     }
                 ]
-            },
-            {test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000'},
-            {
-                test: /\.(jpg|png|svg)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[path][name].[hash].[ext]',
-                },
             },
             {
                 test: /\.css$/,
@@ -91,3 +89,5 @@ module.exports = {
         ...plugins
     ]
 };
+
+

@@ -23,12 +23,19 @@ class EventContainer extends React.Component {
   }
   render() {
     console.log(this.state.event);
-    return <Event event={this.state.event} isAuth={this.props.isAuth} />;
+    return (
+      <Event
+        event={this.state.event}
+        isAuth={this.props.isAuth}
+        tags={this.props.tagsList}
+      />
+    );
   }
 }
 const mapStateToProps = state => ({
   eventsList: eventsSelectors.selectEventsList(state),
-  isAuth: authSelectors.selectAuthStatus(state)
+  isAuth: authSelectors.selectAuthStatus(state),
+  tagsList: eventsSelectors.selectTagsList(state)
 });
 
 const mapDispatchToProps = {};

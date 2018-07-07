@@ -10,7 +10,8 @@ export default class XHRProvider {
     }
   }
   requestApi = (path, params) =>
-    axios
-      .get(`${config.uri}${path}`)
-      .then(response => response.data);
+    axios.get(`${config.uri}${path}`).then(response => response.data);
+  // postRequest = (path, params, data) => {
+  //   axios.get(`${config.uri}${path}`).then(response => response.data);
+  // };
 }
