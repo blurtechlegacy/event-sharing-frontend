@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../ducks/events-duck/Actions";
 import * as selectors from "../ducks/events-duck/Selectors";
+import * as authSelectors from "../ducks/auth-duck/Selectors";
 import AddEvent from "../components/AddEvent";
 import axios from "axios";
 
@@ -14,6 +15,7 @@ class AddEventContainer extends React.Component {
       eventPlace: "",
       eventDate: this.getDate(),
       eventSrartTime: "",
+      //eventStart: this.state.eventData + " " + this.state.eventSrartTime,
       eventTags: [],
       visibleElements: [true, false, false, false]
     };
@@ -49,10 +51,14 @@ class AddEventContainer extends React.Component {
   };
   send = () => {
     axios
-      .post("http://localhost:8080/products", {
+      .post("http://104.41.217.114:1984/api/v001/events", {
+        host: this.props.user.id,
         name: this.state.eventName,
         description: this.state.eventDescription,
-        manufacturer: this.state.eventPlace
+        place: this.state.eventPlace,
+        tags: this.state.eventTags,
+        start: `${this.state.eventDate} ${this.state.eventSrartTime}`,
+        end: `${this.state.eventDate} ${this.state.eventSrartTime}`
       })
       .then(res => console.log(res))
       .catch(err => console.log(err));
@@ -76,7 +82,8 @@ class AddEventContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  tags: selectors.selectTagsList(state)
+  tags: selectors.selectTagsList(state),
+  user: authSelectors.selectUser(state)
 });
 
 const mapDispatchToProps = {};

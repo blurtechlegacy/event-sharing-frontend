@@ -8,26 +8,18 @@ import Event from "../components/Event";
 class EventContainer extends React.Component {
   constructor(props) {
     super(props);
+    const { id } = props.match.params;
     this.state = {
-      event: {}
+      event: props.eventsList.find(el => el.id == id)
     };
   }
-  componentDidMount() {
-    const id = this.props.match.params.id;
-    console.log("id", id);
-    const event = this.props.eventsList.filter(el => {
-      return el.id == id;
-    });
-    console.log(event);
-    this.setState({ event: event[0] });
-  }
+
   render() {
-    console.log(this.state.event);
     return (
       <Event
         event={this.state.event}
-        isAuth={this.props.isAuth}
         tags={this.props.tagsList}
+        isAuth={this.props.isAuth}
       />
     );
   }
