@@ -11,19 +11,24 @@ import {withStyles} from "material-ui";
 const styles = {
     root: {
         justifyContent: "space-between",
-        backgroundColor: "white",
+        backgroundColor: "#ff6e40",
 
     },
     flex: {
         display: "flex",
         alignItems: "center",
         font: "HelveticaNeue-Light",
-        textColor:'black',
-        border:'2px #000 solid'
+
     },
     inline: {
         display: "inline"
+    },
+    buttBorder:{
+        textColor:'white',
+        border:'1px #000 solid',
+        marginLeft:'15px'
     }
+
 };
 
 class NavBar extends React.Component {
@@ -53,14 +58,14 @@ class NavBar extends React.Component {
         let userName = null;
         if (this.props.isAuth) {
             button = (
-                <Button color="black" onClick={this.handleLogoutClick.bind(this)}>
+                <Button className={this.props.classes.buttBorder} color="white" onClick={this.handleLogoutClick.bind(this)}>
                     Log out
                 </Button>
             );
             userName = <Typography>Username: {this.props.username}</Typography>;
         } else {
             button = (
-                <Button color="black" onClick={this.handleLoginClick.bind(this)}>
+                <Button className={this.props.classes.buttBorder} color="white" onClick={this.handleLoginClick.bind(this)}>
                     Log in
                 </Button>
             );
@@ -70,10 +75,10 @@ class NavBar extends React.Component {
             <AppBar>
                 <Toolbar className={this.props.classes.root}>
                     <div className={this.props.classes.flex}>
-                        <Button color="black" onClick={this.toHomepage.bind(this)}>
+                        <Button className={this.props.classes.buttBorder} color="white" onClick={this.toHomepage.bind(this)}>
                             EventsSharing
                         </Button>
-                        <Button color="black" onClick={this.toAddEvent}>
+                        <Button className={this.props.classes.buttBorder} color="white" onClick={this.toAddEvent}>
                             Добавить событие
                         </Button>
                     </div>

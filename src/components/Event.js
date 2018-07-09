@@ -14,7 +14,7 @@ class EventPreview extends React.Component {
 
   follow = () => {
     if (!this.props.isAuth) {
-      alert("Нужно зарегаться");
+      alert("Please,log in");
     } else {
       this.setState({ showSecretData: true });
     }

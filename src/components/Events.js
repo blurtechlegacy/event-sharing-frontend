@@ -8,7 +8,8 @@ const styles = {
         display: 'flex',
         marginTop: '70px',
         alignItems: 'start',
-        alignContent:'center'
+        alignContent:'center',
+        flexWrap:'wrap'
 
 
 
@@ -21,7 +22,7 @@ const Events = props => {
     const eventsList = props.events.map(event => {
 
         return (
-            <EventPreview key={event.id} event={event}/>
+            <EventPreview key={event.id} event={event} users={props.users}/>
         );
     });
 

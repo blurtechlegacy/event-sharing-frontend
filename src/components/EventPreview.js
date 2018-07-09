@@ -7,22 +7,24 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import img from '../Assets/partyInTheForest.jpg'
+import {withRouter} from "react-router-dom";
+import Icon from '@material-ui/core/Icon';
+import AddIcon from '@material-ui/icons/PermIdentity';
 
 
 const styles = {
     parentCard: {
-        display:'flex',
-        flexWrap:'wrap',
-        maxWidth:
+        display: 'flex',
+        flexWrap: 'wrap',
     },
     card: {
         width: 300,
-        maxHeight: 450,
-        minHeight: 450,
+         maxHeight: 400,
+         minHeight: 400,
         marginLeft: '5px',
         marginRight: '5px',
+        marginBottom: '20px',
         fontFamily: 'Verdana, Geneva, sans-serif',
-
 
 
     },
@@ -31,17 +33,32 @@ const styles = {
         paddingTop: '56.25%', // 16:9
     },
     inCardButton: {
-        display:'flex',
-        alignItems:'flex-end'
+        display: 'flex',
+        justifyContent: "space-between",
+        alignSelf: 'flex-end'
     }
 
 };
 
 
 const EventPreview = props => {
+    function showMore() {
+
+        props.history.push(`/event/${props.event.id}`);
+    }
+
+    const userName = props.users.find(el => {
+
+        return el.id == props.event.host
+
+    });
     const {classes} = props;
+
+    const login = userName && userName.login
+
+    const guests = props.event && props.event.guests && props.event.guests.length;
     return (
-        <div className={classes.parentCard}>
+        <div>
             <Card className={classes.card}>
                 <CardMedia
                     className={classes.media}
@@ -53,7 +70,7 @@ const EventPreview = props => {
                         {props.event.name}
                     </Typography>
                     <Typography component="p">
-                        {props.event.host}
+                        {login}
                     </Typography>
                     {props.event.description}
                     <Typography>
@@ -61,12 +78,14 @@ const EventPreview = props => {
                     </Typography>
                 </CardContent>
                 <CardActions className={classes.inCardButton}>
-                    <Button size="small" color="primary">
-                        I`ll be here
-                    </Button>
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" onClick={showMore}>
                         Learn More
                     </Button>
+                    <Typography>
+                        <AddIcon/>
+                        {props.event && props.event.guests && props.event.guests.length}
+                    </Typography>
+
                 </CardActions>
             </Card>
 
@@ -75,6 +94,6 @@ const EventPreview = props => {
 }
 
 
-export default withStyles(styles)(EventPreview);
+export default withStyles(styles)(withRouter(EventPreview));
 
 

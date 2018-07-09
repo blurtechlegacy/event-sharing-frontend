@@ -20,7 +20,7 @@ const styles = theme => ({
         flexDirection: 'column',
         alignItems: "center",
         flexWrap: 'wrap',
-        marginTop: '60px'
+        marginTop: '100px'
     },
     textField: {
         marginLeft: theme.spacing.unit,
@@ -28,7 +28,7 @@ const styles = theme => ({
         width: 200,
     },
     button0: {
-        //background: 'linear-gradient(45deg, #FE6B8B 30%, #e5e531 80%)',
+        background: '#ff6e40',
         borderRadius: 3,
         border:'2px #',
         textColor:'black',
@@ -61,7 +61,7 @@ const TextFieldMargins = props => {
 
 
     return (
-        <div className={classes.container}>
+        <form  onSubmit={props.handleSubmit} className={classes.container}>
             <TextField
                 label="Login"
                 id="margin-login"
@@ -79,14 +79,13 @@ const TextFieldMargins = props => {
                 onChange={props.handleChangePassword}
             />
             <div className={classes.buttons}>
-                <Button className={classes.button0} onClick={props.handleSubmit}>
+                <Button type="submit" className={classes.button0} >
                     {'sign in'}
-
-                </Button>
+                    </Button>
             </div>
 
 
-        </div>
+        </form>
 
     );
 };

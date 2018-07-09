@@ -18,6 +18,7 @@ function* loginRequestSaga(action) {
     if (user) {
       console.log("auth");
     } else {
+      alert("invalid log or pass");
       console.log("not auth");
     }
     if (user) {
