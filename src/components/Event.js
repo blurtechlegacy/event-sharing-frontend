@@ -8,36 +8,26 @@ const styles = theme => ({
 });
 
 class EventPreview extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: "",
-      secretData: false
-    };
-  }
-  componentDidMount() {
-    this.setState({ visible: this.props.isAuth });
-  }
-  secretData = "";
-  follow = () => {
-    if (!this.state.visible) {
-      alert("Нужно зарегаться");
-      return;
-    }
-    this.setState({ secretData: true });
-    this.secretData = <p>{this.props.event.place}</p>;
+  state = {
+    showSecretData: false
   };
-  // tags = this.props.tags.filter((el, index) => {
-  //   return (el.id = this.props.event.tags[index]);
-  // });
-  // tag = this.props.event.tags.map(el => {
-  //   return el;
-  // });
+
+  follow = () => {
+    if (!this.props.isAuth) {
+      alert("Нужно зарегаться");
+    } else {
+      this.setState({ showSecretData: true });
+    }
+  };
+  getTags() {
+    return this.props.tags.filter(
+      (el, index) => el.id === this.props.event.tags[index]
+    );
+  }
 
   render() {
-    //console.log(this.props.event.tags);
-    //console.log(this.tags);
-    //console.log(this.tag);
+    console.log("tags", this.getTags());
+
     const { classes } = this.props;
     return (
       <div className={classes.container}>
@@ -45,7 +35,7 @@ class EventPreview extends React.Component {
         <p>{this.props.event.description}</p>
         <p>{this.props.event.start}</p>
         <button onClick={this.follow}>Follow</button>
-        {this.secretData}
+        {this.state.showSecretData && <p>{this.props.event.place}</p>}
       </div>
     );
   }

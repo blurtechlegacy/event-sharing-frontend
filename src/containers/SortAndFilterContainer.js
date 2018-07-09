@@ -27,8 +27,6 @@ class SortAndFilterContainer extends React.Component {
     //   });
   };
   render() {
-    console.log("this.state.tagForFilter", this.state.tagForFilter);
-
     return (
       <div>
         <Filter

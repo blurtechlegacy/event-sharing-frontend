@@ -11,9 +11,18 @@ class AuthContainer extends React.Component {
       password: ""
     };
   }
-
+  componentDidMount() {
+    this.props.fetchUsers();
+  }
   login = () => {
-    this.props.loginSuccess(this.state.username);
+    // if (this.props.user.length != ) {
+    //   this.props.loginSuccess(this.state.username, this.state.password);
+    // }
+    this.props.loginRequest(
+      this.state.username,
+      this.state.password,
+      this.props.users
+    );
   };
   handleChangeName = event => {
     this.setState({ username: event.target.value });
@@ -26,9 +35,9 @@ class AuthContainer extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
     this.login();
   };
+
   render() {
     return (
       <Login
@@ -42,10 +51,15 @@ class AuthContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  users: selectors.selectUsers(state),
+  password: selectors.selectPassword(state)
+});
 
 const mapDispatchToProps = {
-  loginSuccess: actions.loginSuccess
+  fetchUsers: actions.fetchUsersRequest,
+  loginSuccess: actions.loginSuccess,
+  loginRequest: actions.loginRequest
 };
 
 export default connect(

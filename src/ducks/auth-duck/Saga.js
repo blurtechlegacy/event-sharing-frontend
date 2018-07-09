@@ -1,47 +1,49 @@
-import { put, takeLatest, all, call } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
-import XHRProvider from '../../XHRProvider';
-import * as types from './ActionTypes';
-import * as actions from './Actions';
+import { put, takeLatest, all, call } from "redux-saga/effects";
+import { push } from "react-router-redux";
+import XHRProvider from "../../XHRProvider";
+import * as types from "./ActionTypes";
+import * as actions from "./Actions";
 
 const xhr = new XHRProvider();
 
-function* fetchRequestTokenSaga() {
-    try {
-        const response = yield call(xhr.get, 'authentication/token/new');
-
-        if (response && response.success) {
-            yield put(actions.fetchTokenSuccess(response.request_token));
-        } else {
-            yield put(actions.fetchTokenError('No token response'));
-        }
-    } catch (error) {
-        yield put(actions.fetchTokenError(error.message));
+function* loginRequestSaga(action) {
+  try {
+    console.log(action);
+    const user = action.users.find(user => {
+      return (
+        user.password === action.password && user.login === action.username
+      );
+    });
+    console.log("user", user);
+    if (user) {
+      console.log("auth");
+    } else {
+      console.log("not auth");
     }
+    if (user) {
+      yield put(actions.loginSuccess(user));
+    }
+  } catch (error) {
+    console.log("/loginRequestSaga", "error");
+  }
 }
 
-function* loginSaga(action) {
-    try {
-        const response = yield call(xhr.get, 'authentication/token/validate_with_login', {
-            username: action.username,
-            password: action.password,
-            request_token: action.requestToken,
-        });
-
-        if (response && response.success) {
-            yield put(actions.loginSuccess(action.username));
-            yield put(push('/movies'));
-        } else {
-            yield put(actions.loginError(response.status_message));
-        }
-    } catch (error) {
-        yield put(actions.loginError(error.message));
+function* fetchRequstUsersSaga(action) {
+  try {
+    console.log("done");
+    const response = yield call(xhr.requestApi, "/api/v001/users");
+    console.log("/users", response);
+    if (response) {
+      yield put(actions.fetchUsersSuccess(response.data));
     }
+  } catch (error) {
+    console.log("/users", "error");
+  }
 }
 
-export function* authRootSaga() {
-    yield all([
-        yield takeLatest(types.FETCH_TOKEN_REQUEST, fetchRequestTokenSaga),
-        yield takeLatest(types.LOGIN_REQUEST, loginSaga)
-    ]);
+export function* AuthRootSaga() {
+  yield all([
+    yield takeLatest(types.FETCH_USERS_REQUEST, fetchRequstUsersSaga),
+    yield takeLatest(types.LOGIN_REQUEST, loginRequestSaga)
+  ]);
 }

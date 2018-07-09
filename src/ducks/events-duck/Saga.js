@@ -8,7 +8,7 @@ const xhr = new XHRProvider();
 
 function* fetchRequestEventsSaga() {
   try {
-    const response = yield call(xhr.requestApi, "/events");
+    const response = yield call(xhr.requestApi, "/api/v001/events");
     console.log(response);
     if (response) {
       yield put(actions.fetchEventsSuccess(response.data));
@@ -20,7 +20,7 @@ function* fetchRequestEventsSaga() {
 
 function* fetchRequestTagsSaga() {
   try {
-    const response = yield call(xhr.requestApi, "/tags");
+    const response = yield call(xhr.requestApi, "/api/v001/tags");
     console.log("/tags", response);
     if (response) {
       yield put(actions.fetchTagsSuccess(response.data));
