@@ -12,7 +12,7 @@ import { withStyles } from "material-ui";
 
 const styles = theme => ({
   container: {
-    marginTop: "100px"
+    marginTop: "80px"
   }
 });
 

@@ -28,10 +28,11 @@ const styles = theme => ({
         width: 200,
     },
     button0: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #e5e531 80%)',
+        //background: 'linear-gradient(45deg, #FE6B8B 30%, #e5e531 80%)',
         borderRadius: 3,
-        border: 0,
-        color: 'white',
+        border:'2px #',
+        textColor:'black',
+        //color: 'white',
         height: 48,
         padding: '0 10px',
         boxShadow: '0 3px 5px 2px rgba(100, 105, 135, .3)',
@@ -61,9 +62,6 @@ const TextFieldMargins = props => {
 
     return (
         <div className={classes.container}>
-            <div className={classes.Logo}>
-
-            </div>
             <TextField
                 label="Login"
                 id="margin-login"

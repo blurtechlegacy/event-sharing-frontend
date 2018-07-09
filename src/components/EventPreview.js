@@ -10,12 +10,18 @@ import img from '../Assets/partyInTheForest.jpg'
 
 
 const styles = {
+    parentCard: {
+        display:'flex',
+        flexWrap:'wrap',
+        maxWidth:
+    },
     card: {
-
         width: 300,
         maxHeight: 450,
+        minHeight: 450,
         marginLeft: '5px',
-        marginRight:'5px'
+        marginRight: '5px',
+        fontFamily: 'Verdana, Geneva, sans-serif',
 
 
 
@@ -24,6 +30,10 @@ const styles = {
         height: 10,
         paddingTop: '56.25%', // 16:9
     },
+    inCardButton: {
+        display:'flex',
+        alignItems:'flex-end'
+    }
 
 };
 
@@ -31,7 +41,7 @@ const styles = {
 const EventPreview = props => {
     const {classes} = props;
     return (
-        <div >
+        <div className={classes.parentCard}>
             <Card className={classes.card}>
                 <CardMedia
                     className={classes.media}
@@ -50,7 +60,7 @@ const EventPreview = props => {
 
                     </Typography>
                 </CardContent>
-                <CardActions>
+                <CardActions className={classes.inCardButton}>
                     <Button size="small" color="primary">
                         I`ll be here
                     </Button>

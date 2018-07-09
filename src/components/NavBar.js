@@ -11,11 +11,15 @@ import {withStyles} from "material-ui";
 const styles = {
     root: {
         justifyContent: "space-between",
-        backgroundColor: "rgba(255,0,0,.4)"
+        backgroundColor: "white",
+
     },
     flex: {
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        font: "HelveticaNeue-Light",
+        textColor:'black',
+        border:'2px #000 solid'
     },
     inline: {
         display: "inline"
@@ -49,14 +53,14 @@ class NavBar extends React.Component {
         let userName = null;
         if (this.props.isAuth) {
             button = (
-                <Button color="inherit" onClick={this.handleLogoutClick.bind(this)}>
+                <Button color="black" onClick={this.handleLogoutClick.bind(this)}>
                     Log out
                 </Button>
             );
             userName = <Typography>Username: {this.props.username}</Typography>;
         } else {
             button = (
-                <Button color="inherit" onClick={this.handleLoginClick.bind(this)}>
+                <Button color="black" onClick={this.handleLoginClick.bind(this)}>
                     Log in
                 </Button>
             );
@@ -66,10 +70,10 @@ class NavBar extends React.Component {
             <AppBar>
                 <Toolbar className={this.props.classes.root}>
                     <div className={this.props.classes.flex}>
-                        <Button color="inherit" onClick={this.toHomepage.bind(this)}>
+                        <Button color="black" onClick={this.toHomepage.bind(this)}>
                             EventsSharing
                         </Button>
-                        <Button color="inherit" onClick={this.toAddEvent}>
+                        <Button color="black" onClick={this.toAddEvent}>
                             Добавить событие
                         </Button>
                     </div>
