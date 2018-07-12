@@ -9,27 +9,44 @@ import IconButton from "material-ui/IconButton";
 import {withStyles} from "material-ui";
 
 const styles = {
-    root: {
-        justifyContent: "space-between",
-        backgroundColor: "#ff6e40",
+        root: {
+            justifyContent: "space-between",
+            background: 'transparent',
+            //filter:'blur(10px)'
 
-    },
-    flex: {
-        display: "flex",
-        alignItems: "center",
-        font: "HelveticaNeue-Light",
 
-    },
-    inline: {
-        display: "inline"
-    },
-    buttBorder:{
-        textColor:'white',
-        border:'1px #000 solid',
-        marginLeft:'15px'
+        },
+        flex: {
+            display: "flex",
+            alignItems: "center",
+            font: "HelveticaNeue-Light",
+
+        },
+        inline: {
+            display: "inline"
+        },
+        buttBorder: {
+            textColor: 'white',
+            //border:'1px #FFFFFF solid',
+            //marginLeft:'500px',
+            paddingRight: 20,
+            fontSize: '20px',
+        },
+        scroll: {
+            background: 'rgba(0,0,0,.2)',
+            overflow: 'hidden',
+            //position: 'absolute'
+
+        },
+        hub: {
+            color: 'white',
+            background: 'red',
+            paddingLeft: '2',
+            borderRadius: '5px',
+        }
+
     }
-
-};
+;
 
 class NavBar extends React.Component {
     handleLoginClick() {
@@ -58,28 +75,32 @@ class NavBar extends React.Component {
         let userName = null;
         if (this.props.isAuth) {
             button = (
-                <Button className={this.props.classes.buttBorder} color="white" onClick={this.handleLogoutClick.bind(this)}>
+                <Button className={this.props.classes.buttBorder} color="inherit"
+                        onClick={this.handleLogoutClick.bind(this)}>
                     Log out
                 </Button>
             );
-            userName = <Typography>Username: {this.props.username}</Typography>;
+            userName = <Typography> Username: {this.props.username}</Typography>;
         } else {
             button = (
-                <Button className={this.props.classes.buttBorder} color="white" onClick={this.handleLoginClick.bind(this)}>
+                <Button className={this.props.classes.buttBorder} color="inherit"
+                        onClick={this.handleLoginClick.bind(this)}>
                     Log in
                 </Button>
             );
         }
 
         return (
-            <AppBar>
+            <AppBar className={this.props.classes.scroll}>
                 <Toolbar className={this.props.classes.root}>
                     <div className={this.props.classes.flex}>
-                        <Button className={this.props.classes.buttBorder} color="white" onClick={this.toHomepage.bind(this)}>
-                            EventsSharing
+                        <Button className={this.props.classes.buttBorder} color="inherit"
+                                onClick={this.toHomepage.bind(this)}>
+                            Event<a className={this.props.classes.hub}>
+                            hub</a>
                         </Button>
-                        <Button className={this.props.classes.buttBorder} color="white" onClick={this.toAddEvent}>
-                            Добавить событие
+                        <Button className={this.props.classes.buttBorder} color="inherit" onClick={this.toAddEvent}>
+                            Add event
                         </Button>
                     </div>
                     <div className={this.props.classes.flex}>

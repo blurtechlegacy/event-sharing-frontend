@@ -1,0 +1,9 @@
+ body {
+    background: url("./Assets/backLarge.jpg") repeat-y center center;
+    /*background: aqua;*/
+    max-width: 2048px;
+    height: 1361px;
+
+}
+
+

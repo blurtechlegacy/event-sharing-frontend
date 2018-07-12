@@ -33,8 +33,8 @@ class SortAndFilterContainer extends React.Component {
           handleChange={this.handleChange}
           selectTag={this.state.tagForFilter}
           tags={this.props.tagsList}
+          dispatchAddTagForFilter={this.dispatchAddTagForFilter}
         />
-        <button onClick={this.dispatchAddTagForFilter}>Filter</button>
       </div>
     );
   }

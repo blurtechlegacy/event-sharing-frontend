@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui";
+import Button from '@material-ui/core/Button';
+
+
+
 const styles = theme => ({
   container: {
     marginTop: "100px"
@@ -34,7 +38,7 @@ class EventPreview extends React.Component {
         <h2>{this.props.event.name}</h2>
         <p>{this.props.event.description}</p>
         <p>{this.props.event.start}</p>
-        <button onClick={this.follow}>Follow</button>
+        <Button onClick={this.follow}>Follow</Button>
         {this.state.showSecretData && <p>{this.props.event.place}</p>}
       </div>
     );

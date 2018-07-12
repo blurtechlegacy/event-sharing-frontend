@@ -10,9 +10,6 @@ const styles = {
         alignItems: 'start',
         alignContent:'center',
         flexWrap:'wrap'
-
-
-
     }
 
 

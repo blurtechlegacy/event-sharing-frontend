@@ -31,6 +31,28 @@ module.exports = {
         strictExportPresence: true,
         rules: [
             {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {},
+                    },
+                ],
+            },
+            {
+                test: /\.js$/,
+                exclude: /(node_modules)/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["react", "stage-0"],
+                        cacheDirectory: true,
+                        plugins: ["transform-object-rest-spread"]
+                    }
+                }
+            },
+
+            /*{
                 oneOf: [{test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000'},
                     {
                         test: /\.(jpg|png|svg)$/,
@@ -39,20 +61,8 @@ module.exports = {
                             name: '[path][name].[hash].[ext]',
                         }
                     },
-                    {
-                        test: /\.js$/,
-                        exclude: /(node_modules)/,
-                        use: {
-                            loader: "babel-loader",
-                            options: {
-                                presets: ["react", "stage-0"],
-                                cacheDirectory: true,
-                                plugins: ["transform-object-rest-spread"]
-                            }
-                        }
-                    }
                 ]
-            },
+            },*/
             {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
@@ -69,7 +79,7 @@ module.exports = {
         },
         hot: false,
         host: "127.0.0.1",
-        port: "3000",
+        port: "8080",
         historyApiFallback: true
     },
     plugins: [

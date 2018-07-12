@@ -21,10 +21,12 @@ const styles = {
         width: 300,
          maxHeight: 400,
          minHeight: 400,
-        marginLeft: '5px',
-        marginRight: '5px',
-        marginBottom: '20px',
+        marginLeft: '10px',
+        marginRight: '20px',
+        marginBottom: '25px',
         fontFamily: 'Verdana, Geneva, sans-serif',
+        backgroundColor:'rgba(255,255,255,.5)',
+
 
 
     },
