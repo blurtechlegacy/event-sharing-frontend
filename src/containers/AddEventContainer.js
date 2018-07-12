@@ -12,18 +12,18 @@ class AddEventContainer extends React.Component {
     this.state = {
       eventName: "",
       eventDescription: "",
-      eventPlace: "",
+      eventPlace: "54.98, 82.89",
       eventDate: this.getDate(),
       eventSrartTime: "",
-      //eventStart: this.state.eventData + " " + this.state.eventSrartTime,
-      eventTags: [],
-      visibleElements: [true, false, false, false]
+      eventTags: []
     };
   }
-  visibleElementsArr = [true, false, false, false];
+
+  visibleElementsArr = [true];
+
   changeVisible = index => {
     this.visibleElementsArr[index] = true;
-    this.setState({ visibleElements: this.visibleElementsArr });
+
     console.log("вызвано");
   };
   getDate = () => {
@@ -40,6 +40,7 @@ class AddEventContainer extends React.Component {
   };
 
   tagsArr = [];
+
   handleChange = (event, key = 0) => {
     if (event.target.name === "tag") {
       this.tagsArr[key] = event.target.value;
@@ -50,22 +51,34 @@ class AddEventContainer extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
   send = () => {
-    axios
-      .post("http://104.41.217.114:1984/api/v001/events", {
-        host: this.props.user.id,
-        name: this.state.eventName,
-        description: this.state.eventDescription,
-        place: this.state.eventPlace,
-        tags: this.state.eventTags,
-        start: `${this.state.eventDate} ${this.state.eventSrartTime}`,
-        end: `${this.state.eventDate} ${this.state.eventSrartTime}`
-      })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+    this.props.addEvent({
+      host: this.props.user.id,
+      name: this.state.eventName,
+      description: this.state.eventDescription,
+      place: this.state.eventPlace,
+      tags: this.state.eventTags,
+      start: `${this.state.eventDate} ${this.state.eventSrartTime}`,
+      end: `${this.state.eventDate} ${this.state.eventSrartTime}`
+    });
+
+    // axios
+    //   .post("http://104.41.217.114:1984/api/v001/events", {
+    //     host: this.props.user.id,
+    //     name: this.state.eventName,
+    //     description: this.state.eventDescription,
+    //     place: this.state.eventPlace,
+    //     tags: this.state.eventTags,
+    //     start: `${this.state.eventDate} ${this.state.eventSrartTime}`,
+    //     end: `${this.state.eventDate} ${this.state.eventSrartTime}`
+    //   })
+    //   .then(res => console.log(res))
+    //   .catch(err => console.log(err));
   };
+
   sendEvent = () => {
     this.send();
   };
+
   render() {
     console.log(this.state);
     return (
@@ -73,7 +86,7 @@ class AddEventContainer extends React.Component {
         handleChange={this.handleChange}
         tags={this.props.tags}
         date={this.state.eventDate}
-        visibleElements={this.state.visibleElements}
+        visibleElements={this.visibleElementsArr}
         changeVisible={this.changeVisible}
         sendEvent={this.sendEvent}
       />
@@ -83,10 +96,13 @@ class AddEventContainer extends React.Component {
 
 const mapStateToProps = state => ({
   tags: selectors.selectTagsList(state),
-  user: authSelectors.selectUser(state)
+  user: authSelectors.selectUser(state),
+  addEventRes: selectors.addEventRes(state)
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  addEvent: actions.addEventRequest
+};
 
 export default connect(
   mapStateToProps,

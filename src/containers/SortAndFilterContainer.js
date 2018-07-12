@@ -15,17 +15,12 @@ class SortAndFilterContainer extends React.Component {
   }
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    //this.dispatchAddTagForFilter(this.state.tagForFilter);
   };
 
   dispatchAddTagForFilter = () => {
     this.props.addTagForFilter(this.state.tagForFilter);
-    //   this.props.tagsList.forEach(element => {
-    //     if (element.id === this.state.tagForFilter) {
-    //       this.props.addTagForFilter(element.name);
-    //     }
-    //   });
   };
+
   render() {
     return (
       <div>
@@ -33,8 +28,8 @@ class SortAndFilterContainer extends React.Component {
           handleChange={this.handleChange}
           selectTag={this.state.tagForFilter}
           tags={this.props.tagsList}
+          dispatchAddTagForFilter={this.dispatchAddTagForFilter}
         />
-        <button onClick={this.dispatchAddTagForFilter}>Filter</button>
       </div>
     );
   }
@@ -43,12 +38,10 @@ class SortAndFilterContainer extends React.Component {
 const mapStateToProps = state => ({
   tagsList: selectors.selectTagsList(state),
   tagForFilter: selectors.selectTagForFilter(state)
-  //sortEvents: selectors.selectSortEventList(state)
 });
 
 const mapDispatchToProps = {
   addTagForFilter: actions.addTagForFilter
-  //sortEvents: actions.fetchEventsRequest
 };
 
 export default connect(

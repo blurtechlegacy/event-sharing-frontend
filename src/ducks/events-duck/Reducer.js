@@ -4,8 +4,11 @@ const initialState = {
   eventsList: [],
   tags: [],
   typeOfSort: "new",
-  tagForFilter: ""
+  tagForFilter: "",
+  postRequestRes: "",
+  error: ""
 };
+
 export const events = (state = initialState, action) => {
   switch (action.type) {
     case types.FETCH_EVENTS_SUCCESS:
@@ -22,6 +25,17 @@ export const events = (state = initialState, action) => {
       return {
         ...state,
         tagForFilter: action.tag
+      };
+    case types.ADD_EVENT_SUCCESS:
+      console.log("reducer", action.res);
+      return {
+        ...state,
+        postRequestRes: action.res
+      };
+    case types.ADD_EVENT_ERROR:
+      return {
+        ...state,
+        error: action.error
       };
     default:
       return state;

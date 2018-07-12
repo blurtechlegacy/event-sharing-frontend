@@ -22,3 +22,13 @@ export const addTagForFilter = tag => ({
   type: types.ADD_TAG_FOR_FILTER,
   tag
 });
+
+export const addEventRequest = event => ({
+  type: types.ADD_EVENT_REQUEST,
+  event
+});
+
+export const addEventSuccess = res => ({
+  type: types.ADD_EVENT_SUCCESS,
+  res
+});

@@ -14,28 +14,29 @@ function* loginRequestSaga(action) {
         user.password === action.password && user.login === action.username
       );
     });
-    console.log("user", user);
+
     if (user) {
-      console.log("auth");
     } else {
-      alert("invalid log or pass");
-      console.log("not auth");
+      yield put(actions.loginError("error"));
+      //alert("invalid log or pass");
     }
     if (user) {
       yield put(actions.loginSuccess(user));
+      yield put(push("/"));
     }
   } catch (error) {
-    console.log("/loginRequestSaga", "error");
+    // console.log("/loginRequestSaga", "error");
+    console.log("error", error);
+    yield put(actions.loginError(error));
   }
 }
 
 function* fetchRequstUsersSaga(action) {
   try {
-    console.log("done");
-    const response = yield call(xhr.requestApi, "/api/v001/users");
-    console.log("/users", response);
+    const response = yield call(xhr.get, "/api/v001/users");
+    console.log("users", response);
     if (response) {
-      yield put(actions.fetchUsersSuccess(response.data));
+      yield put(actions.fetchUsersSuccess(response.data.data));
     }
   } catch (error) {
     console.log("/users", "error");

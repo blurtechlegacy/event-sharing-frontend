@@ -9,6 +9,12 @@ export const selectFiltredEventsList = state => {
   }
 
   return state.events.eventsList.filter(el => {
-    return el.tags.includes(Number(state.events.tagForFilter));
+    if (el.tags) {
+      return el.tags.includes(Number(state.events.tagForFilter));
+    }
   });
+};
+
+export const addEventRes = state => {
+  return state.events.postRequestRes;
 };

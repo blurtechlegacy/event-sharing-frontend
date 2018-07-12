@@ -42,6 +42,7 @@ const Filter = props => {
         </Select>
         <FormHelperText>Without label</FormHelperText>
       </FormControl>
+      <button onClick={props.dispatchAddTagForFilter}>Filter</button>
     </div>
   );
 };

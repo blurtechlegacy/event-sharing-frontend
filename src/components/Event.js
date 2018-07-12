@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { YMaps, Map, Placemark } from "react-yandex-maps";
+
 import { withStyles } from "material-ui";
 const styles = theme => ({
   container: {
@@ -9,7 +11,8 @@ const styles = theme => ({
 
 class EventPreview extends React.Component {
   state = {
-    showSecretData: false
+    showSecretData: false,
+    coordinates: this.props.event.place.split(",")
   };
 
   follow = () => {
@@ -27,7 +30,7 @@ class EventPreview extends React.Component {
 
   render() {
     console.log("tags", this.getTags());
-
+    console.log(this.state);
     const { classes } = this.props;
     return (
       <div className={classes.container}>
@@ -35,7 +38,31 @@ class EventPreview extends React.Component {
         <p>{this.props.event.description}</p>
         <p>{this.props.event.start}</p>
         <button onClick={this.follow}>Follow</button>
-        {this.state.showSecretData && <p>{this.props.event.place}</p>}
+        {this.state.showSecretData && (
+          <YMaps>
+            <Map
+              state={{
+                center: this.state.coordinates,
+                zoom: 10,
+                controls: []
+              }}
+              instanceRef={this.setMapControlRef}
+            >
+              <Placemark
+                geometry={{
+                  coordinates: this.state.coordinates
+                }}
+                properties={{
+                  hintContent: this.props.event.name,
+                  iconContent: "E"
+                }}
+                options={{
+                  preset: "islands#nightCircleIcon"
+                }}
+              />
+            </Map>
+          </YMaps>
+        )}
       </div>
     );
   }
