@@ -3,21 +3,21 @@ import { connect } from "react-redux";
 import * as actions from "../ducks/auth-duck/Actions";
 import * as selectors from "../ducks/auth-duck/Selectors";
 import Login from "../components/Login";
+import { withRouter } from "react-router-dom";
 class AuthContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      loginError: this.props.error
     };
   }
   componentDidMount() {
     this.props.fetchUsers();
   }
+
   login = () => {
-    // if (this.props.user.length != ) {
-    //   this.props.loginSuccess(this.state.username, this.state.password);
-    // }
     this.props.loginRequest(
       this.state.username,
       this.state.password,
@@ -39,21 +39,27 @@ class AuthContainer extends React.Component {
   };
 
   render() {
+    console.log("loginError", this.state.loginError);
+    console.log("Error", this.props.error);
     return (
-      <Login
-        username={this.state.username}
-        password={this.state.password}
-        handleChangeName={this.handleChangeName}
-        handleChangePassword={this.handleChangePassword}
-        handleSubmit={this.handleSubmit}
-      />
+      <div>
+        <Login
+          username={this.state.username}
+          password={this.state.password}
+          handleChangeName={this.handleChangeName}
+          handleChangePassword={this.handleChangePassword}
+          handleSubmit={this.handleSubmit}
+          isError={this.props.error}
+        />
+      </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
   users: selectors.selectUsers(state),
-  password: selectors.selectPassword(state)
+  password: selectors.selectPassword(state),
+  error: selectors.selectError(state)
 });
 
 const mapDispatchToProps = {

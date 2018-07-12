@@ -30,7 +30,6 @@ export const auth = (state = initialState, action) => {
         username: "",
         isAuth: false
       };
-    case types.FETCH_TOKEN_ERROR:
     case types.LOGIN_ERROR:
       return {
         ...state,
