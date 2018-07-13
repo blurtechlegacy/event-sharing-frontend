@@ -20,6 +20,7 @@ class EventContainer extends React.Component {
         event={this.state.event}
         tags={this.props.tagsList}
         isAuth={this.props.isAuth}
+        userId={this.props.user.id}
       />
     );
   }
@@ -27,7 +28,8 @@ class EventContainer extends React.Component {
 const mapStateToProps = state => ({
   eventsList: eventsSelectors.selectEventsList(state),
   isAuth: authSelectors.selectAuthStatus(state),
-  tagsList: eventsSelectors.selectTagsList(state)
+  tagsList: eventsSelectors.selectTagsList(state),
+  user: authSelectors.selectUser(state)
 });
 
 const mapDispatchToProps = {};
