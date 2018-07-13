@@ -5,7 +5,7 @@ import * as selectors from "../ducks/events-duck/Selectors";
 import * as authSelectors from "../ducks/auth-duck/Selectors";
 import AddEvent from "../components/AddEvent";
 import axios from "axios";
-
+import moment from "moment";
 class AddEventContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -62,29 +62,16 @@ class AddEventContainer extends React.Component {
     this.props.addEvent({
       host: this.props.user.id,
       name: this.state.eventName,
+      host_name: this.props.user.login,
       description: this.state.eventDescription,
       place: this.state.eventPlace,
       tags: this.state.eventTags,
       guests: [],
       start: `${new Date(
-        Number(this.state.eventDateArr[0]),
-        Number(this.state.eventDateArr[1]),
-        Number(this.state.eventDateArr[2]),
-        Number(this.state.eventSrartTimeArr[0]),
-        Number(this.state.eventSrartTimeArr[1]),
-
-        0,
-        0
+        moment(`${this.state.eventDate} ${this.state.eventSrartTime}`)
       ).getTime()}`,
       end: `${new Date(
-        Number(this.state.eventDateArr[0]),
-        Number(this.state.eventDateArr[1]),
-        Number(this.state.eventDateArr[2]),
-        Number(this.state.eventSrartTimeArr[0]),
-        Number(this.state.eventSrartTimeArr[1]),
-
-        0,
-        0
+        moment(`${this.state.eventDate} ${this.state.eventSrartTime}`)
       ).getTime()}`
     });
 
@@ -109,17 +96,13 @@ class AddEventContainer extends React.Component {
   render() {
     console.log(this.state);
     console.log(
-      new Date(
-        Number(this.state.eventDateArr[0]),
-        Number(this.state.eventDateArr[1]),
-        Number(this.state.eventDateArr[2]),
-        Number(this.state.eventSrartTimeArr[0]),
-        Number(this.state.eventSrartTimeArr[1]),
-
-        0,
-        0
-      ).getTime()
+      "moment",
+      `${new Date(
+        moment(`${this.state.eventDate} ${this.state.eventSrartTime}`)
+      ).getTime()}`
     );
+    
+    
     return (
       <AddEvent
         handleChange={this.handleChange}
