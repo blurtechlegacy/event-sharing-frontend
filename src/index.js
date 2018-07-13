@@ -29,7 +29,7 @@ const element = (
             <ConnectedRouter history={history}>
                 <AppContainer/>
             </ConnectedRouter>
-        </Provider>
+        </Provider>˚
     </div>
 );
 

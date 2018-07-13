@@ -19,16 +19,13 @@ const styles = {
     },
     card: {
         width: 300,
-         maxHeight: 400,
-         minHeight: 400,
+        maxHeight: 400,
+        minHeight: 400,
         marginLeft: '10px',
         marginRight: '20px',
         marginBottom: '25px',
         fontFamily: 'Verdana, Geneva, sans-serif',
-        backgroundColor:'rgba(255,255,255,.5)',
-
-
-
+        backgroundColor: 'rgba(255,255,255,.5)',
     },
     media: {
         height: 10,
@@ -38,6 +35,12 @@ const styles = {
         display: 'flex',
         justifyContent: "space-between",
         alignSelf: 'flex-end'
+    },
+    LearnM: {
+        border: '1px #000 solid',
+    },
+    buttonMan:{
+
     }
 
 };
@@ -80,13 +83,15 @@ const EventPreview = props => {
                     </Typography>
                 </CardContent>
                 <CardActions className={classes.inCardButton}>
-                    <Button size="small" color="primary" onClick={showMore}>
-                        Learn More
-                    </Button>
-                    <Typography>
-                        <AddIcon/>
-                        {props.event && props.event.guests && props.event.guests.length}
-                    </Typography>
+
+                        <Button size="small" color="black" className={classes.LearnM} onClick={showMore}>
+                            Learn More
+                        </Button>
+                        <Typography>
+                            <AddIcon/>
+                            {props.event && props.event.guests && props.event.guests.length}
+                        </Typography>
+                    
 
                 </CardActions>
             </Card>

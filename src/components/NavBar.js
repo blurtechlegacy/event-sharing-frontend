@@ -7,6 +7,7 @@ import Typography from "material-ui/Typography";
 import Button from "material-ui/Button";
 import IconButton from "material-ui/IconButton";
 import {withStyles} from "material-ui";
+import UserIcon from '@material-ui/icons/Person';
 
 const styles = {
         root: {
@@ -21,6 +22,7 @@ const styles = {
             alignItems: "center",
             font: "HelveticaNeue-Light",
 
+
         },
         inline: {
             display: "inline"
@@ -31,6 +33,10 @@ const styles = {
             //marginLeft:'500px',
             paddingRight: 20,
             fontSize: '20px',
+            wavesEffect:'flat',
+            "&:hover": {
+                backgroundColor:'transparent'
+            }
         },
         scroll: {
             background: 'rgba(0,0,0,.2)',
@@ -45,7 +51,11 @@ const styles = {
             paddingRight: '5px',
             borderRadius: '5px',
             marginLeft:'3px'
-        }
+        },
+    you:{
+            display:'flex',
+        flexDirection:'row'
+    }
 
     }
 ;
@@ -82,7 +92,8 @@ class NavBar extends React.Component {
                     Log out
                 </Button>
             );
-            userName = <Typography> Username: {this.props.username}</Typography>;
+
+
         } else {
             button = (
                 <Button className={this.props.classes.buttBorder} color="inherit"
@@ -96,7 +107,7 @@ class NavBar extends React.Component {
             <AppBar className={this.props.classes.scroll}>
                 <Toolbar className={this.props.classes.root}>
                     <div className={this.props.classes.flex}>
-                        <Button className={this.props.classes.buttBorder} color="inherit"
+                        <Button disableRipple={true} className={this.props.classes.buttBorder} color="inherit"
                                 onClick={this.toHomepage.bind(this)}>
                             Event<a className={this.props.classes.hub}>
                             hub</a>
@@ -106,7 +117,12 @@ class NavBar extends React.Component {
                         </Button>
                     </div>
                     <div className={this.props.classes.flex}>
-                        {userName}
+
+                        {this.props.isAuth && (
+                            <div className={this.props.classes.you}>
+                            <UserIcon/>
+                            <Typography color="inherit"> {this.props.username}</Typography>
+                            </div>)}
                         {button}
 
                     </div>
