@@ -10,7 +10,7 @@ export const selectFiltredEventsList = state => {
 
   return state.events.eventsList.filter(el => {
     if (el.tags) {
-      return el.tags.includes(Number(state.events.tagForFilter));
+      return el.tags.includes(state.events.tagForFilter);
     }
   });
 };

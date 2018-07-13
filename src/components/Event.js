@@ -5,11 +5,13 @@ import { YMaps, Map, Placemark } from "react-yandex-maps";
 
 import { withStyles } from "material-ui";
 import Button from "@material-ui/core/Button";
+import Chip from "@material-ui/core/Chip";
 const styles = theme => ({
   container: {
     marginTop: "100px",
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   right: {
     display: "flex",
@@ -18,7 +20,7 @@ const styles = theme => ({
   left: {
     display: "flex"
   },
-  btn: {}
+  btn: { color: "red" }
 });
 
 class EventPreview extends React.Component {
@@ -51,11 +53,26 @@ class EventPreview extends React.Component {
     console.log("tags", this.getTags());
     console.log(this.state);
     const { classes } = this.props;
+    const tagChips =
+      this.props.event &&
+      this.props.event.tags.map(el => {
+        console.log(el);
+        return <p> el </p>;
+      });
     return (
       <div className={classes.container}>
         <div className={classes.right}>
           <h2>{this.props.event.name}</h2>
           <p>{this.props.event.description}</p>
+
+          {this.props.event.tags.map((tag, index) => {
+            console.log(tag);
+            const tagEl = this.props.tags.find(el => {
+              return el.id === tag;
+            });
+            console.log("tagEl", tagEl);
+            return <Chip key={index} label={tagEl.name} />;
+          })}
           {/* <p>{this.props.event.start}</p> */}
 
           {this.state.showSecretData && (
