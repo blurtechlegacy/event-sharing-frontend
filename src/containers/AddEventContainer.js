@@ -15,6 +15,8 @@ class AddEventContainer extends React.Component {
       eventPlace: "54.98, 82.89",
       eventDate: this.getDate(),
       eventSrartTime: "",
+      eventDateArr: [],
+      eventSrartTimeArr: [],
       eventTags: []
     };
   }
@@ -26,6 +28,7 @@ class AddEventContainer extends React.Component {
 
     console.log("вызвано");
   };
+
   getDate = () => {
     let year = new Date().getUTCFullYear();
     let month =
@@ -49,6 +52,11 @@ class AddEventContainer extends React.Component {
       return;
     }
     this.setState({ [event.target.name]: event.target.value });
+    this.setState({ eventDateArr: this.state.eventDate.split("-") });
+
+    this.setState({
+      eventSrartTimeArr: this.state.eventSrartTime.split(":")
+    });
   };
   send = () => {
     this.props.addEvent({
@@ -57,8 +65,27 @@ class AddEventContainer extends React.Component {
       description: this.state.eventDescription,
       place: this.state.eventPlace,
       tags: this.state.eventTags,
-      start: `${this.state.eventDate} ${this.state.eventSrartTime}`,
-      end: `${this.state.eventDate} ${this.state.eventSrartTime}`
+      guests: [],
+      start: `${new Date(
+        Number(this.state.eventDateArr[0]),
+        Number(this.state.eventDateArr[1]),
+        Number(this.state.eventDateArr[2]),
+        Number(this.state.eventSrartTimeArr[0]),
+        Number(this.state.eventSrartTimeArr[1]),
+
+        0,
+        0
+      ).getTime()}`,
+      end: `${new Date(
+        Number(this.state.eventDateArr[0]),
+        Number(this.state.eventDateArr[1]),
+        Number(this.state.eventDateArr[2]),
+        Number(this.state.eventSrartTimeArr[0]),
+        Number(this.state.eventSrartTimeArr[1]),
+
+        0,
+        0
+      ).getTime()}`
     });
 
     // axios
@@ -81,6 +108,18 @@ class AddEventContainer extends React.Component {
 
   render() {
     console.log(this.state);
+    console.log(
+      new Date(
+        Number(this.state.eventDateArr[0]),
+        Number(this.state.eventDateArr[1]),
+        Number(this.state.eventDateArr[2]),
+        Number(this.state.eventSrartTimeArr[0]),
+        Number(this.state.eventSrartTimeArr[1]),
+
+        0,
+        0
+      ).getTime()
+    );
     return (
       <AddEvent
         handleChange={this.handleChange}

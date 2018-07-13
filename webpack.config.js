@@ -72,7 +72,7 @@ module.exports = {
       ignored: /node_modules/
     },
     hot: false,
-    host: "104.41.217.114",
+    host: "127.0.0.1",
     port: "3000",
     historyApiFallback: true
   },
