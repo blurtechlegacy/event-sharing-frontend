@@ -23,7 +23,7 @@ const styles = theme => ({
   btn: { color: "red" }
 });
 
-class EventPreview extends React.Component {
+class Event extends React.Component {
   state = {
     showSecretData: false,
     coordinates: this.props.event.place.split(",")
@@ -116,4 +116,4 @@ class EventPreview extends React.Component {
   }
 }
 
-export default withStyles(styles)(EventPreview);
+export default withStyles(styles)(Event);
