@@ -1,6 +1,6 @@
 # Eventhub 
 
-[![GitHub issues](https://img.shields.io/github/issues/blurtech/event-sharing-frontend.svg)](https://github.com/blurtech/event-sharing-frontend/issues)  [![HitCount](http://hits.dwyl.io/blurtech/event-sharing-frontend.svg)](http://hits.dwyl.io/blurtech/event-sharing-frontend)  
+[![Maintainability](https://api.codeclimate.com/v1/badges/53684238df041448b1a2/maintainability)](https://codeclimate.com/github/blurtech/event-sharing-frontend/maintainability) [![GitHub issues](https://img.shields.io/github/issues/blurtech/event-sharing-frontend.svg)](https://github.com/blurtech/event-sharing-frontend/issues)  [![HitCount](http://hits.dwyl.io/blurtech/event-sharing-frontend.svg)](http://hits.dwyl.io/blurtech/event-sharing-frontend)  
 
 ![Eventhub](https://pp.userapi.com/c847020/v847020208/9800e/BJ8SGn4Zx7s.jpg)  
 
