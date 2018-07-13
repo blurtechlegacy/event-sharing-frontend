@@ -5,7 +5,7 @@ export const selectTagForFilter = state => state.events.tagForFilter;
 
 export const selectFiltredEventsList = state => {
   if (!state.events.tagForFilter) {
-    return state.events.eventsList;
+    return state.events.eventsList.reverse();
   }
 
   return state.events.eventsList.filter(el => {

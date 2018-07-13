@@ -94,6 +94,16 @@ class NavBar extends React.Component {
     this.props.history.push("/login");
   };
 
+  evsIamGoingTo = () => {
+    console.log("evsIamGoingTo");
+    this.props.history.push("/subscriptions");
+    this.setState({ anchorEl: null });
+  };
+  toCreatedEvents = () => {
+    this.props.history.push("/addedEvents");
+    this.setState({ anchorEl: null });
+  };
+
   render() {
     const open = Boolean(this.state.anchorEl);
     let button = null;
@@ -172,8 +182,8 @@ class NavBar extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <MenuItem onClick={this.evsIamGoingTo}>Profile</MenuItem>
+                  <MenuItem onClick={this.toCreatedEvents}>My account</MenuItem>
                 </Menu>
               </div>
             )}

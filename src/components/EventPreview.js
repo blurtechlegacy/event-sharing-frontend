@@ -45,6 +45,10 @@ const EventPreview = props => {
   function showMore() {
     props.history.push(`/event/${props.event.id}`);
   }
+  const overview =
+    props.event.description < 30
+      ? props.event.description
+      : `${props.event.description.slice(0, 29)}...`;
 
   const userName = props.users.find(el => {
     return el.id == props.event.host;
@@ -67,7 +71,7 @@ const EventPreview = props => {
             {props.event.name}
           </Typography>
           <Typography component="p">{props.event.host_name}</Typography>
-          {props.event.description}
+          {overview}
           <Typography />
         </CardContent>
         <CardActions className={classes.inCardButton}>
