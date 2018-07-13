@@ -5,7 +5,7 @@ import TextField from "material-ui/TextField";
 import Button from "material-ui/Button";
 
 const Sort = props => {
-  return <Button>Sort</Button>;
+  return <Button>Modal</Button>;
 };
 
 export default Sort;

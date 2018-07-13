@@ -1,5 +1,5 @@
 const config = {
-    uri: "http://localhost:8080"
-}
+  url: "http://104.41.217.114:1984"
+};
 
 export default config;

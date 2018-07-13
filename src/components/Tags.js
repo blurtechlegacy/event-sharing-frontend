@@ -16,26 +16,51 @@ class Tags extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectTag: "",
-      tagsCount: 3
+      amountVisibleTags: 5
     };
   }
-  tagsList = this.props.tagsList.map((element, index) => {
-    console.log(element);
-    console.log(index);
-    return (
-      <Tag
-        key={index}
-        tagKey={index}
-        tagsList={this.props.tagsList}
-        handleChange={this.props.handleChange}
-      />
-    );
-  });
-  classes = this.props;
   render() {
-    return this.tagsList;
+    const tags = this.props.tagsList.map((element, index) => {
+      console.log(index, this.props.visibleElements[index]);
+      if (index < this.state.amountVisibleTags) {
+        return (
+          <Tag
+            key={index}
+            tagKey={index}
+            tagsList={this.props.tagsList}
+            handleChange={this.props.handleChange}
+            visibleOrHidden={this.props.visibleElements[index]}
+            visibleElements={this.props.visibleElements}
+            changeVisible={this.props.changeVisible}
+          />
+        );
+      }
+    });
+
+    return tags;
   }
 }
+
+// const Tags = props => {
+//   const amountVisibleTags = 5;
+//   const tags = props.tagsList.map((element, index) => {
+//     console.log(index, props.visibleElements[index]);
+//     if (index < amountVisibleTags) {
+//       return (
+//         <Tag
+//           key={index}
+//           tagKey={index}
+//           tagsList={props.tagsList}
+//           handleChange={props.handleChange}
+//           visibleOrHidden={props.visibleElements[index]}
+//           visibleElements={props.visibleElements}
+//           changeVisible={props.changeVisible}
+//         />
+//       );
+//     }
+//   });
+
+//   return tags;
+// };
 
 export default withStyles(styles)(Tags);

@@ -1,3 +1,11 @@
-export const FETCH_EVENTS_REQUEST = "@@auth/FETCH_EVENTS_REQUEST"
-export const FETCH_EVENTS_SUCCESS = "@@auth/FETCH_EVENTS_SUCCESS"
-export const FETCH_EVENTS_ERROR = "@@auth/FETCH_EVENTS_ERROR"
+export const FETCH_EVENTS_REQUEST = "@@event/FETCH_EVENTS_REQUEST";
+export const FETCH_EVENTS_SUCCESS = "@@event/FETCH_EVENTS_SUCCESS";
+export const FETCH_EVENTS_ERROR = "@@event/FETCH_EVENTS_ERROR";
+export const FETCH_TAGS_REQUEST = "@@event/FETCH_TAGS_REQUEST";
+export const FETCH_TAGS_SUCCESS = "@@event/FETCH_TAGS_SUCCESS";
+export const FETCH_TAGS_ERROR = "@@event/FETCH_TAGS_ERROR";
+export const SORT_EVENTS = "@@event/SORT_EVENTS";
+export const ADD_TAG_FOR_FILTER = "@@event/ADD_TAG_FOR_FILTER";
+export const ADD_EVENT_REQUEST = "@@event/ADD_EVENT_REQUEST";
+export const ADD_EVENT_SUCCESS = "@@event/ADD_EVENT_SUCCESS";
+export const ADD_EVENT_ERROR = "@@event/ADD_EVENT_ERROR";

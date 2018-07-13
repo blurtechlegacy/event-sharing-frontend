@@ -6,28 +6,103 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import TextField from "material-ui/TextField";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import Tags from "./Tags";
+import ContactMap from "./Map";
+import { TypeSelector } from "react-yandex-maps/main/Helpers";
 
 const styles = theme => ({
   container: {
-    marginTop: "20%"
+    marginTop: "80px",
+    marginLeft: "175px",
+    display: "flex",
+    flexDirection: "column",
+    width: "50%"
+  },
+  eveButt: {
+    BackgroundColor: "#ff6e40"
   }
 });
 
 const Event = props => {
+  const inf = () => {
+    console.log("addEvent", props.visibleElements);
+  };
   const { classes } = props;
-  console.log(props.tags);
 
   return (
     <div className={classes.container}>
-      <input type="text" name="eventName" onChange={props.handleChange} />
-      <input
-        type="text"
-        name="eventDescription"
+      {inf()}
+      <TextField
+        id="eventName"
+        label="Name"
+        name="eventName"
+        className={classes.textField}
         onChange={props.handleChange}
+        margin="normal"
       />
-      <input type="text" name="eventPlace" onChange={props.handleChange} />
-      <Tags tagsList={props.tags} handleChange={props.handleChange} />
+      <TextField
+        id="eventDescription"
+        label="Description"
+        name="eventDescription"
+        className={classes.textField}
+        onChange={props.handleChange}
+        margin="normal"
+      />
+      {/* <TextField
+        id="eventPlace"
+        label="Place"
+        name="eventPlace"
+        className={classes.textField}
+        onChange={props.handleChange}
+        margin="normal"
+      /> */}
+      <TextField
+        id="date"
+        label="Date"
+        type="date"
+        name="eventDate"
+        defaultValue={props.date}
+        //defaultValue={`${new Date().getYear()}-${new Date().getMonth()}-${new Date().getDay()}`}
+        onChange={props.handleChange}
+        className={classes.textField}
+        InputLabelProps={{
+          shrink: true
+        }}
+      />
+      <TextField
+        id="time"
+        label="Start time"
+        type="time"
+        name="eventSrartTime"
+        defaultValue=""
+        onChange={props.handleChange}
+        className={classes.textField}
+        InputLabelProps={{
+          shrink: true
+        }}
+        inputProps={{
+          step: 300 // 5 min
+        }}
+      />
+      <Tags
+        tagsList={props.tags}
+        handleChange={props.handleChange}
+        visibleElements={props.visibleElements}
+        changeVisible={props.changeVisible}
+      />
+      <Typography> Point your position</Typography>
+      <ContactMap />
+      <Button
+        className={classes.eveButt}
+        onClick={props.sendEvent}
+        variant="contained"
+        color="primary"
+      >
+        Add event
+      </Button>
     </div>
   );
 };
