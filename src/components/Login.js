@@ -27,16 +27,16 @@ const styles = theme => ({
     width: 200
   },
   button0: {
-    background: "#ff6e40",
-    borderRadius: 3,
-    border: "2px #",
-    textColor: "black",
-    //color: 'white',
-    height: 48,
-    padding: "0 10px",
-    boxShadow: "0 3px 5px 2px rgba(100, 105, 135, .3)",
-    marginTop: "10px",
-    marginRight: "15px"
+      background: 'rgba(255,255,255,.5)',
+      borderRadius: 3,
+      border:'2px #',
+      textColor:'blue',
+      //color: 'white',
+      height: 48,
+      padding: '0 10px',
+      boxShadow: '0 3px 5px 2px rgba(100, 105, 135, .3)',
+      marginTop: '10px',
+      marginRight: '15px'
   },
   button1: {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
