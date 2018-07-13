@@ -35,14 +35,16 @@ const styles = {
         scroll: {
             background: 'rgba(0,0,0,.2)',
             overflow: 'hidden',
-            //position: 'absolute'
+            position: 'absolute'
 
         },
         hub: {
             color: 'white',
             background: 'red',
-            paddingLeft: '2',
+            paddingLeft: '5px',
+            paddingRight: '5px',
             borderRadius: '5px',
+            marginLeft:'3px'
         }
 
     }
