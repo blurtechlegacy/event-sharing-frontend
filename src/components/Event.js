@@ -20,7 +20,13 @@ const styles = theme => ({
   left: {
     display: "flex"
   },
-  btn: { color: "red" }
+  btn: { color: "red" },
+  chips: {
+    width: 120,
+    margin: theme.spacing.unit,
+    display: "flex",
+    flexDirection: "row"
+  }
 });
 
 class Event extends React.Component {
@@ -53,6 +59,7 @@ class Event extends React.Component {
     console.log("tags", this.getTags());
     console.log(this.state);
     const { classes } = this.props;
+    const signed = this.props.event.guests.includes(this.props.userId);
     const tagChips =
       this.props.event &&
       this.props.event.tags.map(el => {
@@ -71,11 +78,13 @@ class Event extends React.Component {
               return el.id === tag;
             });
             console.log("tagEl", tagEl);
-            return <Chip key={index} label={tagEl.name} />;
+            return (
+              <Chip className={classes.chips} key={index} label={tagEl.name} />
+            );
           })}
           {/* <p>{this.props.event.start}</p> */}
 
-          {this.state.showSecretData && (
+          {this.state.showSecretData || signed ? (
             <YMaps>
               <Map
                 state={{
@@ -99,18 +108,30 @@ class Event extends React.Component {
                 />
               </Map>
             </YMaps>
-          )}
+          ) : null}
         </div>
-        <div className={classes.left}>
-          <Button
-            variant="extendedFab"
-            aria-label="delete"
-            className={classes.button}
-            onClick={this.follow}
-          >
-            Follow
-          </Button>
-        </div>
+        {this.state.showSecretData || signed ? (
+          <div className={classes.left}>
+            <Button
+              variant="extendedFab"
+              aria-label="delete"
+              className={classes.button}
+            >
+              Assigned
+            </Button>
+          </div>
+        ) : (
+          <div className={classes.left}>
+            <Button
+              variant="extendedFab"
+              aria-label="delete"
+              className={classes.button}
+              onClick={this.follow}
+            >
+              Follow
+            </Button>
+          </div>
+        )}
       </div>
     );
   }
