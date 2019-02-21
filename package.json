@@ -38,7 +38,7 @@
     "react-yandex-maps": "^3.0.0",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
-    "redux-saga": "^0.16.0",
+    "redux-saga": "^1.0.0",
     "start": "^5.1.0",
     "url-loader": "^1.0.1",
     "yandex-map-react": "^1.1.1"
